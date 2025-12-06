@@ -800,3 +800,30 @@ body.health-theme {
         padding: 30px;
     }
 }
+
+/* =========================================
+   CORRECCIÓN PARA IMAGEN CON TEXTO (FLYER)
+   ========================================= */
+
+/* Quitamos la altura fija de 400px para que la caja crezca lo que necesite la imagen */
+.catalog-img.promo-mode {
+    height: auto !important; 
+    min-height: auto !important;
+    background: transparent; /* Por si acaso */
+    box-shadow: none; /* Opcional: Quita la sombra si la imagen ya tiene fondo oscuro */
+    border-radius: 8px; /* Mantenemos bordes redondeados si quieres */
+}
+
+/* Le decimos a la imagen que se muestre completa (contain) en lugar de recotar (cover) */
+.catalog-img.promo-mode img {
+    object-fit: contain !important; /* Muestra TODO el contenido */
+    height: auto !important;        /* Altura natural */
+    width: 100%;                    /* Ancho completo del contenedor */
+    position: relative;
+    transform: none !important;     /* Evita el zoom al hacer hover si molesta la lectura */
+}
+
+/* Opcional: Desactivar el zoom al pasar el mouse para que sea más fácil leer */
+.catalog-item:hover .catalog-img.promo-mode img {
+    transform: none; 
+}

@@ -801,3 +801,57 @@ body.health-theme {
     }
 }
 
+/* =========================================
+   --- ITEMS DEL CATÁLOGO (ZIG ZAG) --- 
+   ========================================= */
+
+.catalog-item {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin: 60px 0; /* Espaciado entre productos */
+}
+
+/* Esto es lo que mueve la imagen a la derecha cuando usas la clase "reverse" */
+.catalog-item.reverse {
+    flex-direction: row-reverse;
+}
+
+.catalog-img {
+    flex: 1;
+    /* IMPORTANTE: height: auto para que la caja se adapte al tamaño real de tu foto/flyer */
+    height: auto; 
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.catalog-img img {
+    width: 100%;
+    /* IMPORTANTE: height: auto y object-fit: contain para que NUNCA se recorte la imagen */
+    height: auto; 
+    object-fit: contain; 
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto Zoom suave */
+.catalog-item:hover .catalog-img img {
+    transform: scale(1.02);
+}
+
+.catalog-info {
+    flex: 1;
+}
+
+/* RESPONSIVE (MÓVIL) */
+@media (max-width: 768px) {
+    .catalog-item, .catalog-item.reverse {
+        flex-direction: column; /* En móvil, la imagen siempre va arriba */
+        gap: 30px;
+    }
+    .catalog-img {
+        width: 100%;
+        max-height: none; /* Dejamos que crezca lo que necesite */
+    }
+}

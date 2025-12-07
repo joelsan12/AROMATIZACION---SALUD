@@ -1,48 +1,42 @@
 /* =========================================
    1. VARIABLES & RESET (CONFIGURACIÓN GLOBAL)
    ========================================= */
-/* --- PALETA DE COLORES (MODO CLARO) --- */
 :root {
     --primary: #111111;       /* Negro Profundo */
-    
-    /* CAMBIO AQUÍ: Tono metálico en lugar de amarillo */
     --gold: #ffd23f;          /* Dorado Metálico Elegante */
-    --gold-hover: #AA8C2C;    /* Dorado más oscuro y serio para el hover */
-    
+    --gold-hover: #AA8C2C;    /* Dorado más oscuro */
     --health: #2a9d8f;        /* Verde Health */
-
-    /* Resto de variables (se mantienen igual) */
+    
     --bg-body: #ffffff;
     --bg-light: #f9f9f9;
     --bg-card: #ffffff;
-    --bg-nav: rgba(255, 255, 255, 0.85);
+    --bg-nav: rgba(255, 255, 255, 0.95);
+    
     --text-main: #222222;
     --text-muted: #666666;
     --border: #e0e0e0;
     
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Montserrat', sans-serif;
+    
     --shadow: 0 10px 30px rgba(0,0,0,0.08);
     --shadow-gold: 0 5px 15px rgba(212, 175, 55, 0.2);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* --- MODO OSCURO (OVERRIDES) --- */
+/* --- MODO OSCURO --- */
 body.dark-mode {
-    --bg-body: #0a0a0a;       /* Casi negro absoluto */
+    --bg-body: #0a0a0a;
     --bg-light: #151515;
     --bg-card: #1e1e1e;
-    --bg-nav: rgba(10, 10, 10, 0.85); /* Cristal Oscuro */
-    
+    --bg-nav: rgba(10, 10, 10, 0.9);
     --text-main: #f0f0f0;
     --text-muted: #aaaaaa;
     --border: #333333;
-    
     --shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -52,6 +46,7 @@ body {
     line-height: 1.6;
     transition: background 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
+    width: 100%;
 }
 
 h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; color: var(--text-main); }
@@ -60,127 +55,74 @@ ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
 /* =========================================
-   2. NAVBAR (DISEÑO ELEGANTE & ALINEADO)
+   2. NAVBAR
    ========================================= */
 .navbar {
-    position: fixed; 
-    top: 0; 
-    width: 100%; 
-    z-index: 1000;
-    
-    /* EFECTO CRISTAL (GLASSMORPHISM) */
+    position: fixed; top: 0; width: 100%; z-index: 2000;
     background: var(--bg-nav);
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(128, 128, 128, 0.1);
-    
     padding: 15px 0;
     transition: padding 0.3s ease, background 0.3s ease;
 }
-
-/* Cuando se hace scroll, la barra se hace un poco más pequeña */
 .navbar.scrolled { padding: 10px 0; shadow: var(--shadow); }
 
-.nav-container { 
-    display: flex; 
-    justify-content: space-between; /* Separa Logo (Izq) y Grupo Derecho */
-    align-items: center; 
-}
-
-/* LOGO */
-.logo { 
-    font-size: 1.8rem; 
-    font-family: var(--font-serif); 
-    font-weight: 700; 
-    color: var(--text-main); 
-    letter-spacing: -0.5px;
-}
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.8rem; font-family: var(--font-serif); font-weight: 700; color: var(--text-main); letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 
-/* GRUPO DERECHO (Menú + Botones) */
-.nav-items-right {
-    display: flex;
-    align-items: center;
-    gap: 30px; /* Espacio elegante entre elementos */
-}
-
-/* ENLACES DE TEXTO */
+.nav-items-right { display: flex; align-items: center; gap: 30px; }
 .nav-links { display: flex; gap: 25px; }
-
 .nav-links a {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 500;
-    color: var(--text-main);
-    position: relative;
-    opacity: 0.8;
+    font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
+    font-weight: 500; color: var(--text-main); position: relative; opacity: 0.8;
 }
-
 .nav-links a:hover { opacity: 1; color: var(--gold); }
-
-/* Línea animada al hacer hover */
 .nav-links a::after {
     content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 1px;
     background: var(--gold); transition: width 0.3s ease;
 }
 .nav-links a:hover::after { width: 100%; }
 
-/* BOTÓN COTIZAR (Estilo Ghost) */
 .btn-nav { 
-    border: 1px solid var(--gold); 
-    padding: 8px 25px; 
-    border-radius: 2px; /* Cuadrado elegante */
-    color: var(--text-main); 
-    font-size: 0.75rem; 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    font-weight: 600;
+    border: 1px solid var(--gold); padding: 8px 25px; border-radius: 2px;
+    color: var(--text-main); font-size: 0.75rem; text-transform: uppercase; 
+    letter-spacing: 1px; font-weight: 600;
 }
 .btn-nav:hover { background: var(--gold); color: #fff; border-color: var(--gold); box-shadow: var(--shadow-gold); }
 
-/* BOTÓN TEMA (LUNA) */
 .theme-btn {
     background: transparent; border: none; color: var(--text-main); font-size: 1.1rem; cursor: pointer;
-    transition: transform 0.4s ease;
-    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.4s ease; display: flex; align-items: center; justify-content: center;
 }
 .theme-btn:hover { transform: rotate(20deg); color: var(--gold); }
 
-/* HAMBURGUESA (Móvil) */
 .hamburger { display: none; cursor: pointer; }
 .bar { display: block; width: 25px; height: 2px; background: var(--text-main); margin: 6px 0; transition: 0.3s; }
 
 /* =========================================
-   3. HERO SECTION (PORTADA)
+   3. HERO SECTION
    ========================================= */
 #inicio {
-    height: 100vh;
+    min-height: 100vh; width: 100%;
     background: url('https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
     display: flex; align-items: center; justify-content: center;
     position: relative; text-align: center; color: white;
+    padding-top: 80px; 
 }
-.hero-overlay {
-    position: absolute; inset: 0; 
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
-}
-.hero-content p {
-    font-size: 1.2rem; /* Un poquito más grande ayuda a la lectura */
-    margin-bottom: 35px;
-    color: #ffffff; /* Aseguramos que sea blanco puro (antes era #ddd) */
-    font-weight: 400; /* Un poco más grueso (antes era 300) */
-    
-    /* ESTA ES LA MAGIA: Sombra negra difuminada detrás del texto */
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9); 
-}
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.4)); }
 
+.hero-content { position: relative; z-index: 2; padding: 20px; width: 100%; }
+.hero-content p {
+    font-size: 1.2rem; margin-bottom: 35px; color: #ffffff; 
+    font-weight: 400; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9); 
+}
 .subtitle { text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; display: block; margin-bottom: 15px; color: rgba(255,255,255,0.8); }
 .hero-content h1 { font-size: 4.5rem; margin-bottom: 0px; color: var(--gold); line-height: 1; }
 .hero-tagline { font-size: 2rem; font-weight: 400; font-style: italic; margin-bottom: 25px; color: #fff; font-family: var(--font-serif); }
-.hero-content p { font-size: 1.1rem; margin-bottom: 35px; color: #ddd; font-weight: 300; }
 
 .hero-btns { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-
 .btn { padding: 14px 35px; border-radius: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; }
 .btn-primary { background: var(--gold); color: #000; border: 1px solid var(--gold); }
 .btn-primary:hover { background: var(--gold-hover); transform: translateY(-2px); }
@@ -200,7 +142,6 @@ img { max-width: 100%; display: block; }
 .section-title { font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-main); }
 .section-title span { color: var(--gold); font-style: italic; }
 
-/* --- NOSOTROS --- */
 .split-container { display: flex; align-items: center; gap: 60px; }
 .text-side { flex: 1; }
 .img-side { flex: 1; }
@@ -213,8 +154,9 @@ img { max-width: 100%; display: block; }
 .elegant-quote { font-family: var(--font-serif); font-size: 1.4rem; font-style: italic; border-left: 3px solid var(--gold); padding-left: 25px; color: var(--text-main); margin-top: 40px; }
 
 /* =========================================
-   5. EQUIPOS (PRODUCT CARDS)
+   5. TARJETAS DE PRODUCTOS (GRID)
    ========================================= */
+/* ¡AQUÍ ESTÁ LO QUE FALTABA! ESTILO DE TARJETAS RESTAURADO */
 .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
 
 .product-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: var(--transition); position: relative; }
@@ -232,11 +174,28 @@ img { max-width: 100%; display: block; }
 .features li { margin-bottom: 10px; color: var(--text-muted); font-size: 0.9rem; list-style: none; display: flex; align-items: center; gap: 10px; }
 .features i { color: var(--gold); width: 20px; text-align: center; }
 
+/* --- SHOWCASE PREMIUM (Diseño Horizontal) --- */
+.premium-showcase {
+    display: flex; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 15px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    max-width: 1000px; margin: 30px auto 0; transition: transform 0.3s ease;
+}
+.premium-showcase:hover { transform: translateY(-5px); border-color: var(--gold); }
+.showcase-image { flex: 1; min-height: 400px; position: relative; overflow: hidden; }
+.showcase-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.premium-showcase:hover .showcase-image img { transform: scale(1.05); }
+
+.showcase-content { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+.content-header h3 { font-size: 1.8rem; margin-bottom: 10px; color: var(--text-main); }
+.showcase-content .desc { color: var(--text-muted); margin-bottom: 30px; font-size: 1rem; line-height: 1.6; }
+
+.specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 35px; }
+.spec-item { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: var(--text-main); font-weight: 500; }
+.spec-item i { color: var(--gold); font-size: 1.2rem; width: 20px; text-align: center; }
+.spec-item.full-width { grid-column: 1 / -1; }
+
 .btn-gold { background: var(--gold); color: #fff; width: 100%; border-radius: 4px; text-align: center; padding: 12px; display: block; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; }
 .btn-gold:hover { background: var(--gold-hover); }
-
-.btn-dark-outline { border: 1px solid var(--text-main); color: var(--text-main); width: 100%; border-radius: 4px; text-align: center; padding: 12px; display: block; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; }
-.btn-dark-outline:hover { background: var(--text-main); color: var(--bg-body); }
 
 /* =========================================
    6. SERVICIOS (INTERACTIVO)
@@ -269,105 +228,34 @@ img { max-width: 100%; display: block; }
 .stars { color: var(--gold); margin-bottom: 15px; font-size: 0.9rem; }
 .testimonial-box p { font-style: italic; font-family: var(--font-serif); font-size: 1.1rem; color: var(--text-main); }
 
-/* --- FOOTER MODERNO Y ALINEADO --- */
-footer {
-    background: #000;
-    color: #888;
-    padding: 60px 0 20px;
-    border-top: 4px solid var(--gold);
-}
+/* =========================================
+   8. FOOTER
+   ========================================= */
+footer { background: #000; color: #888; padding: 60px 0 20px; border-top: 4px solid var(--gold); }
 
 .footer-content {
-    display: grid;
-    /* Creamos 3 columnas: Marca (grande), Enlaces, Redes */
-    grid-template-columns: 1.5fr 1fr 1fr; 
-    gap: 40px;
-    border-bottom: 1px solid #222;
-    padding-bottom: 40px;
-    margin-bottom: 20px;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px;
+    border-bottom: 1px solid #222; padding-bottom: 40px; margin-bottom: 20px;
 }
-
-.footer-column h3 {
-    color: white;
-    font-size: 2rem;
-    font-family: var(--font-serif);
-    margin-bottom: 10px;
-}
-
+.footer-column h3 { color: white; font-size: 2rem; font-family: var(--font-serif); margin-bottom: 10px; }
 .footer-column h3 span { color: var(--gold); }
+.footer-column h4 { color: #fff; font-size: 1.1rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+.footer-column ul li { margin-bottom: 10px; }
+.footer-column a { color: #888; transition: 0.3s; font-size: 0.95rem; }
+.footer-column a:hover { color: var(--gold); padding-left: 5px; }
 
-.footer-column h4 {
-    color: #fff;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.footer-column ul li {
-    margin-bottom: 10px;
-}
-
-.footer-column a {
-    color: #888;
-    transition: 0.3s;
-    font-size: 0.95rem;
-}
-
-.footer-column a:hover {
-    color: var(--gold);
-    padding-left: 5px; /* Pequeño movimiento al hacer hover */
-}
-
-/* --- ICONOS DE REDES EN FOOTER --- */
-.social-icons {
-    display: flex;
-    gap: 15px;
-}
-
+.social-icons { display: flex; gap: 15px; }
 .social-icons a {
-    width: 40px;
-    height: 40px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
+    width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: #fff;
+    font-size: 1rem; transition: all 0.3s ease; border: 1px solid transparent;
 }
-
-/* Efecto Hover en los iconos */
 .social-icons a:hover {
-    background: var(--gold);
-    color: #000;
-    transform: translateY(-3px);
-    padding-left: 0; /* Anulamos el padding de los enlaces de texto */
-    box-shadow: 0 0 15px var(--gold-hover);
+    background: var(--gold); color: #000; transform: translateY(-3px);
+    padding-left: 0; box-shadow: 0 0 15px var(--gold-hover);
 }
+.copyright { text-align: center; font-size: 0.8rem; color: #555; padding-top: 10px; }
 
-.copyright {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #555;
-    padding-top: 10px;
-}
-
-/* --- RESPONSIVE FOOTER (Móvil) --- */
-@media (max-width: 768px) {
-    .footer-content {
-        /* En móvil se pone todo en una sola columna centrada */
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 30px;
-    }
-
-    .social-icons {
-        justify-content: center; /* Centrar iconos en móvil */
-    }
-}
 /* =========================================
    9. ANIMACIONES
    ========================================= */
@@ -377,819 +265,202 @@ footer {
 .delay-200 { transition-delay: 0.2s; }
 
 /* =========================================
-   10. RESPONSIVE (MÓVIL)
+   10. BOTONES FLOTANTES
    ========================================= */
-@media (max-width: 768px) {
-    .hero-content h1 { font-size: 3rem; }
-    .hero-tagline { font-size: 1.5rem; }
-    .split-container { flex-direction: column; gap: 30px; }
-    
-    /* MENÚ MÓVIL (DRAWER) */
-    .nav-items-right { gap: 15px; } /* Reduce espacio entre iconos */
-    
-    .nav-links {
-        position: fixed; top: 0; right: -100%; height: 100vh; width: 70%;
-        background: var(--bg-card); flex-direction: column; align-items: center; justify-content: center;
-        transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.1); padding: 20px; z-index: 999;
-    }
-    .nav-links.active { right: 0; }
-    .nav-links a { font-size: 1.2rem; margin: 15px 0; color: var(--text-main); }
-    
-    .hamburger { display: block; z-index: 1000; }
-    .hamburger.toggle .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
-    .hamburger.toggle .bar:nth-child(2) { opacity: 0; }
-    .hamburger.toggle .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
-
-    .btn-nav { display: none; } /* Ocultar botón cotizar en header móvil si no cabe */
-    .footer-content { flex-direction: column; text-align: center; gap: 30px; }
-}
-
-/* =========================================
-   11. BOTONES FLOTANTES (WHASTAPP & SCROLL)
-   ========================================= */
-
 .float-btn {
-    position: fixed;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    cursor: pointer;
-    z-index: 2000; /* Por encima de todo */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    border: none;
+    position: fixed; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; z-index: 1500; 
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: none;
 }
 
-/* --- WHATSAPP --- */
+/* WhatsApp */
 .whatsapp-float {
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background-color: #25D366;
-    color: #fff;
-    font-size: 30px;
-    text-decoration: none;
-    /* Animación de pulso para llamar la atención */
+    bottom: 30px; right: 30px; width: 60px; height: 60px;
+    background-color: #25D366; color: #fff; font-size: 30px;
     animation: pulse-green 2s infinite;
 }
+.whatsapp-float:hover { transform: scale(1.1); background-color: #20bd5a; }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background-color: #20bd5a;
+/* Scroll Top */
+.scroll-top {
+    bottom: 100px; right: 35px; width: 50px; height: 50px;
+    background-color: var(--gold); color: #fff; font-size: 20px;
+    opacity: 0; visibility: hidden; transform: translateY(20px);
 }
+.scroll-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.scroll-top:hover { background-color: var(--primary); transform: translateY(-5px); }
 
-/* Animación de pulso elegante */
 @keyframes pulse-green {
     0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
     70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-/* --- SCROLL TOP --- */
-.scroll-top {
-    bottom: 100px; /* Arriba del de WhatsApp */
-    right: 35px;   /* Alineado al centro del de WhatsApp */
-    width: 50px;
-    height: 50px;
-    background-color: var(--gold); /* Usamos tu dorado de marca */
-    color: #fff; /* O puedes usar #000 si prefieres contraste */
-    font-size: 20px;
-    opacity: 0;         /* Oculto por defecto */
-    visibility: hidden; /* No clickeable cuando está oculto */
-    transform: translateY(20px);
-}
-
-.scroll-top.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.scroll-top:hover {
-    background-color: var(--primary); /* Cambia a negro/oscuro al pasar el mouse */
-    transform: translateY(-5px);
-}
-
-/* AJUSTE MÓVIL */
-@media (max-width: 768px) {
-    .whatsapp-float { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
-    .scroll-top { width: 40px; height: 40px; font-size: 18px; bottom: 80px; right: 25px; }
-}
-
-
 /* =========================================
-   12. ESTILOS SENSORIAL HEALTH (OVERRIDES)
+   11. SENSORIAL HEALTH (THEME OVERRIDES)
    ========================================= */
-
-/* Solo se activan si el body tiene la clase .health-theme */
 body.health-theme {
-    --gold: #2a9d8f;          /* Reemplazamos Dorado por Teal (Verde Azulado) */
+    --gold: #2a9d8f;
     --gold-hover: #21867a;
-    --bg-nav: rgba(255, 255, 255, 0.95); /* Menú más sólido y blanco para dar sensación clínica */
+    --bg-nav: rgba(255, 255, 255, 0.95);
 }
-
-/* Ajustes específicos de Health */
 .health-dot { color: var(--health); font-weight: 300; }
 .text-health { color: var(--health); font-style: italic; font-family: var(--font-serif); }
 
-/* Hero Específico de Salud */
-.hero-health {
-    background: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-    /* Una imagen más azul/blanca/médica */
-}
-.hero-overlay-health {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(42, 157, 143, 0.3), rgba(0,0,0,0.2));
-}
+.hero-health { background: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; }
+.hero-overlay-health { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(42, 157, 143, 0.3), rgba(0,0,0,0.2)); }
+.health-subtitle { background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; display: inline-block; }
 
-.health-subtitle {
-    background: rgba(255,255,255,0.2);
-    padding: 5px 15px;
-    border-radius: 20px;
-    display: inline-block;
-}
-
-/* Botones Health */
-.btn-health {
-    background: #fff;
-    color: var(--health);
-    padding: 14px 35px;
-    border-radius: 50px; /* Botones redondos inspiran más confianza/suavidad */
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.3s;
-}
+.btn-health { background: #fff; color: var(--health); padding: 14px 35px; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
 .btn-health:hover { background: var(--health); color: #fff; box-shadow: 0 10px 20px rgba(42, 157, 143, 0.3); }
 
-.btn-health-nav {
-    border-color: var(--health);
-    color: var(--health);
-    border-radius: 50px;
-}
+.btn-health-nav { border-color: var(--health); color: var(--health); border-radius: 50px; }
 .btn-health-nav:hover { background: var(--health); color: white; }
 
-.btn-health-outline {
-    border: 1px solid var(--health);
-    color: var(--health);
-    width: 100%;
-    padding: 10px;
-    border-radius: 50px;
-    text-align: center;
-    display: block;
-    margin-top: 15px;
-    transition: 0.3s;
-}
+.btn-health-outline { border: 1px solid var(--health); color: var(--health); width: 100%; padding: 10px; border-radius: 50px; text-align: center; display: block; margin-top: 15px; transition: 0.3s; }
 .btn-health-outline:hover { background: var(--health); color: white; }
 
-/* Features List */
 .health-features i { color: var(--health); }
 .health-tag { background: var(--health); color: white; }
-
-/* Sección Contacto Oscura (Teal Profundo) */
-.bg-health-dark {
-    background-color: #1a5e55; /* Un verde muy oscuro y serio */
-}
-.health-wa {
-    background: #fff;
-    color: #1a5e55;
-}
-.health-wa:hover {
-    background: #f0f0f0;
-    color: #1a5e55;
-    transform: scale(1.05);
-}
-
-/* Ajuste del Footer Health */
-.footer-brand h3 span { color: var(--health); font-weight: 300; }
+.bg-health-dark { background-color: #1a5e55; }
+.health-wa { background: #fff; color: #1a5e55; }
+.health-wa:hover { background: #f0f0f0; color: #1a5e55; transform: scale(1.05); }
 
 /* =========================================
-   13. PÁGINA CATÁLOGO (EQUIPOS.HTML)
+   12. PÁGINA CATÁLOGO & DETALLES
    ========================================= */
-
 .page-header {
-    height: 40vh; /* Encabezado más corto que el Hero principal */
+    min-height: 40vh;
     background: url('https://images.unsplash.com/photo-1605372302302-3c22026850c4?auto=format&fit=crop&w=1920&q=80') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    margin-top: 80px; /* Espacio para el navbar fijo */
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    position: relative; margin-top: 80px; padding: 40px 20px;
 }
-
-.page-header::before {
-    content: ''; position: absolute; inset: 0;
-    background: rgba(0,0,0,0.6); /* Oscurecer imagen */
-}
-
+.page-header::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
 .header-content { position: relative; z-index: 2; color: #fff; max-width: 700px; padding: 20px; }
 .header-content h1 { font-size: 3rem; color: var(--gold); }
 
-/* --- ITEMS DEL CATÁLOGO (ZIG ZAG) --- */
-.catalog-item {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    margin: 40px 0;
-}
-
-/* En pantallas grandes, alternamos la posición (izq/der) */
-.catalog-item.reverse {
-    flex-direction: row-reverse;
-}
+/* --- Items de Catálogo (Zig Zag) --- */
+.catalog-item { display: flex; align-items: center; gap: 60px; margin: 60px 0; }
+.catalog-item.reverse { flex-direction: row-reverse; }
 
 .catalog-img {
-    flex: 1;
-    height: 400px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    flex: 1; height: auto; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08); position: relative;
+    max-width: 100%;
 }
+.catalog-img img { width: 100%; height: auto; object-fit: contain; display: block; transition: transform 0.5s ease; }
+.catalog-item:hover .catalog-img img { transform: scale(1.02); }
 
-.catalog-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
+.catalog-info { flex: 1; }
+.product-cat { color: var(--gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600; display: block; margin-bottom: 10px; }
+.catalog-info h2 { font-size: 2.5rem; margin-bottom: 20px; }
 
-.catalog-item:hover .catalog-img img {
-    transform: scale(1.05);
-}
-
-.catalog-info {
-    flex: 1;
-}
-
-.product-cat {
-    color: var(--gold);
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.catalog-info h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.tech-specs {
-    margin: 25px 0;
-    padding-left: 0;
-}
-
+.tech-specs { margin: 25px 0; padding-left: 0; }
 .tech-specs li {
-    list-style: none;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 1rem;
-    color: var(--text-muted);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    padding-bottom: 8px;
+    list-style: none; margin-bottom: 12px; display: flex; align-items: center;
+    gap: 15px; font-size: 1rem; color: var(--text-muted); border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 8px;
+}
+.tech-specs i { color: var(--gold); font-size: 1.2rem; width: 25px; text-align: center; }
+
+.scent-tags span { display: inline-block; background: var(--bg-light); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; margin-right: 5px; margin-bottom: 5px; border: 1px solid var(--border); }
+.divider { border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0.3; margin: 60px 0; }
+.alert-box { background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--gold); padding: 15px 20px; margin: 20px 0; color: var(--text-main); font-size: 0.95rem; border-radius: 0 5px 5px 0; }
+
+/* --- Video Control Manual --- */
+.video-manual-container { width: 100%; max-width: 320px; aspect-ratio: 9 / 16; margin: 0 auto; background-color: #fff; }
+.media-item { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    object-fit: cover; transition: opacity 0.5s ease-in-out; 
 }
 
-.tech-specs i {
-    color: var(--gold);
-    font-size: 1.2rem;
-    width: 25px;
-    text-align: center;
-}
+.image-layer { z-index: 2; opacity: 0; background-color: #fff; pointer-events: none; }
+.image-layer.active { opacity: 1; pointer-events: auto; }
 
-/* Etiquetas de Aromas */
-.scent-tags span {
-    display: inline-block;
-    background: var(--bg-light);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    border: 1px solid var(--border);
-}
+.video-layer { z-index: 1; opacity: 0; pointer-events: none; }
+.video-layer.active { opacity: 1; pointer-events: auto; }
 
-.divider {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    opacity: 0.3;
-    margin: 60px 0;
-}
-
-/* RESPONSIVE PARA EL CATÁLOGO */
-@media (max-width: 768px) {
-    .catalog-item, .catalog-item.reverse {
-        flex-direction: column;
-        gap: 30px;
-    }
-    .catalog-img {
-        width: 100%;
-        height: 250px;
-    }
-    .catalog-info h2 { font-size: 2rem; }
-}
-
-/* =========================================
-   14. ESTILOS ACTUALIZADOS CATÁLOGO
-   ========================================= */
-
-/* Caja de Alerta (Sin Propileno) */
-.alert-box {
-    background: rgba(212, 175, 55, 0.1); /* Fondo dorado suave */
-    border-left: 4px solid var(--gold);
-    padding: 15px 20px;
-    margin: 20px 0;
-    color: var(--text-main);
-    font-size: 0.95rem;
-    border-radius: 0 5px 5px 0;
-}
-
-/* Grid Lifestyle (Velas, Splash, etc) */
-.lifestyle-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.lifestyle-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: 0.3s;
-    text-align: center;
-}
-
-.lifestyle-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
-    border-color: var(--gold);
-}
-
-.ls-img {
-    height: 250px;
-    overflow: hidden;
-}
-
-.ls-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-
-.lifestyle-card:hover .ls-img img { transform: scale(1.1); }
-
-.ls-content { padding: 20px; }
-.ls-content h3 { font-size: 1.2rem; margin-bottom: 5px; color: var(--gold); }
-.ls-content p { margin-bottom: 5px; font-weight: 500; }
-.ls-content .small { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; }
-
-/* Sección Nature Living (Verde Natural) */
-.bg-nature {
-    background-color: #4a6741; /* Verde olivo elegante */
-    color: white;
-}
-.btn-white {
-    background: #fff;
-    color: #4a6741;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 2px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display: inline-block;
-}
-.btn-white:hover {
-    background: #f0f0f0;
-    transform: translateY(-2px);
-}
-
-/* Utilidad margen superior */
-.mt-3 { margin-top: 1rem; }
-.mb-5 { margin-bottom: 3rem; }
-.max-w-800 { max-width: 800px; margin: 0 auto; }
-
-/* =========================================
-   16. DISEÑO HORIZONTAL EQUIPOS (MEJORA PC)
-   ========================================= */
-
-.premium-showcase {
-    display: flex;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Sombra elegante */
-    max-width: 1000px; /* Ancho máximo para que no se estire demasiado */
-    margin: 30px auto 0; /* Centrado */
-    transition: transform 0.3s ease;
-}
-
-.premium-showcase:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-    border-color: var(--gold);
-}
-
-/* --- IMAGEN (Izquierda) --- */
-.showcase-image {
-    flex: 1; /* Ocupa el 50% */
-    min-height: 400px;
-    position: relative;
-    overflow: hidden;
-}
-
-.showcase-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Asegura que la foto cubra todo sin deformarse */
-    transition: transform 0.5s ease;
-}
-
-.premium-showcase:hover .showcase-image img {
-    transform: scale(1.05); /* Zoom suave al pasar el mouse */
-}
-
-/* --- CONTENIDO (Derecha) --- */
-.showcase-content {
-    flex: 1; /* Ocupa el 50% */
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.content-header h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: var(--text-main);
-}
-
-.showcase-content .desc {
-    color: var(--text-muted);
-    margin-bottom: 30px;
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-/* --- GRID DE CARACTERÍSTICAS (Iconos) --- */
-.specs-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas */
-    gap: 20px;
-    margin-bottom: 35px;
-}
-
-.spec-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.9rem;
-    color: var(--text-main);
-    font-weight: 500;
-}
-
-.spec-item i {
-    color: var(--gold);
-    font-size: 1.2rem;
-    width: 20px;
-    text-align: center;
-}
-
-.spec-item.full-width {
-    grid-column: 1 / -1; /* Ocupa todo el ancho */
-}
-
-/* --- RESPONSIVE (Móvil) --- */
-@media (max-width: 900px) {
-    .premium-showcase {
-        flex-direction: column; /* En móvil se pone uno encima de otro */
-    }
-    .showcase-image {
-        min-height: 250px;
-    }
-    .showcase-content {
-        padding: 30px;
-    }
-}
-
-/* =========================================
-   --- ITEMS DEL CATÁLOGO (ZIG ZAG) --- 
-   ========================================= */
-
-.catalog-item {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    margin: 60px 0; /* Espaciado entre productos */
-}
-
-/* Esto es lo que mueve la imagen a la derecha cuando usas la clase "reverse" */
-.catalog-item.reverse {
-    flex-direction: row-reverse;
-}
-
-.catalog-img {
-    flex: 1;
-    /* IMPORTANTE: height: auto para que la caja se adapte al tamaño real de tu foto/flyer */
-    height: auto; 
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-}
-
-.catalog-img img {
-    width: 100%;
-    /* IMPORTANTE: height: auto y object-fit: contain para que NUNCA se recorte la imagen */
-    height: auto; 
-    object-fit: contain; 
-    display: block;
-    transition: transform 0.5s ease;
-}
-
-/* Efecto Zoom suave */
-.catalog-item:hover .catalog-img img {
-    transform: scale(1.02);
-}
-
-.catalog-info {
-    flex: 1;
-}
-
-/* RESPONSIVE (MÓVIL) */
-@media (max-width: 768px) {
-    .catalog-item, .catalog-item.reverse {
-        flex-direction: column; /* En móvil, la imagen siempre va arriba */
-        gap: 30px;
-    }
-    .catalog-img {
-        width: 100%;
-        max-height: none; /* Dejamos que crezca lo que necesite */
-    }
-}
-
-/* =========================================
-   VIDEO CON BOTÓN MANUAL (CONTROL)
-   ========================================= */
-
-.video-manual-container {
-    position: relative;
-    width: 100%;
-    max-width: 320px; /* Ancho ideal celular */
-    aspect-ratio: 9 / 16; /* Formato Vertical */
-    margin: 0 auto;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    background-color: #fff;
-}
-
-/* Capas de Imagen y Video */
-.media-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Llenar espacio */
-    object-position: center;
-    transition: opacity 0.5s ease-in-out;
-}
-
-/* La imagen tiene fondo blanco por si es PNG transparente */
-.image-layer {
-    z-index: 2;
-    opacity: 0; /* Oculto por defecto */
-    background-color: #fff; 
-}
-
-/* El video está detrás */
-.video-layer {
-    z-index: 1;
-    opacity: 0;
-}
-
-/* Clase para mostrar el elemento activo */
-.media-item.active {
-    opacity: 1;
-}
-
-/* --- BOTÓN FLOTANTE DEL VIDEO --- */
 .toggle-media-btn {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10; /* Encima de todo */
-    
-    background: rgba(255, 255, 255, 0.9); /* Blanco semitransparente */
-    color: var(--primary); /* Texto oscuro */
-    border: 1px solid rgba(0,0,0,0.1);
-    
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10;
+    background: rgba(255, 255, 255, 0.9); color: var(--primary); border: 1px solid rgba(0,0,0,0.1);
+    padding: 10px 20px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: all 0.3s ease;
+    display: flex; align-items: center; gap: 8px; width: max-content;
 }
+.toggle-media-btn:hover { background: var(--gold); color: #fff; transform: translateX(-50%) translateY(-2px); }
 
-.toggle-media-btn:hover {
-    background: var(--gold);
-    color: #fff;
-    transform: translateX(-50%) translateY(-2px);
-}
-
-.toggle-media-btn i {
-    font-size: 0.9rem;
-}
 /* =========================================
-   RESPONSIVE: BARRA DE REDES EN MÓVIL
+   13. REDES SOCIALES FLOTANTES (SIDEBAR)
    ========================================= */
-
-@media (max-width: 768px) {
-    
-    /* 1. TRANSFORMAMOS LA BARRA: De Vertical (PC) a Horizontal (Móvil) */
-    .social-sidebar {
-        display: flex !important; /* Forzamos que se vea */
-        flex-direction: row;      /* Los ponemos en fila */
-        
-        /* Posición: Pegado abajo */
-        top: auto; 
-        bottom: 0; 
-        left: 0;
-        width: 100%;
-        transform: none; /* Quitamos el centrado de PC */
-        
-        /* Estilo visual (Parece una App) */
-        background-color: var(--bg-card); /* Fondo sólido para que se lea */
-        border-top: 1px solid var(--border);
-        padding: 15px 0;
-        justify-content: center; /* Iconos centrados */
-        gap: 40px; /* Separación cómoda para el dedo */
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.1); /* Sombra hacia arriba */
-        z-index: 1900; /* Encima de todo, pero debajo del botón de WhatsApp */
-    }
-
-    /* Ocultamos la línea decorativa en móvil */
-    .social-sidebar::after {
-        display: none;
-    }
-
-    /* Iconos más grandes para tocar fácil */
-    .social-sidebar a {
-        font-size: 1.6rem; /* Iconos grandes */
-        opacity: 1; 
-        color: var(--text-main);
-    }
-
-    /* 2. SUBIMOS LOS BOTONES FLOTANTES (Para que la barra no los tape) */
-    .whatsapp-float {
-        bottom: 80px; /* Lo subimos para dejar espacio a la barra */
-    }
-    
-    .scroll-top {
-        bottom: 150px; /* Lo subimos más */
-    }
-    
-    /* 3. MARGEN EXTRA AL FINAL (Para que el footer no quede tapado) */
-    body {
-        padding-bottom: 70px;
-    }
-}
-/* =========================================
-   REDES SOCIALES FLOTANTES (DEFINITIVO)
-   ========================================= */
-
-/* 1. DISEÑO BASE (PC - Barra Lateral Izquierda Vertical) */
 .social-sidebar {
-    position: fixed;
-    left: 20px;          /* Pegado a la izquierda */
-    top: 50%;            /* Centrado verticalmente */
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column; /* Iconos uno debajo del otro */
-    gap: 15px;           /* Espacio entre iconos */
-    z-index: 1000;       /* Por encima del contenido */
+    position: fixed; left: 20px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 15px; z-index: 1000;
 }
-
 .social-sidebar a {
-    width: 45px;         /* Tamaño del botón */
-    height: 45px;
-    background-color: var(--bg-card); /* Fondo del color de la tarjeta */
-    color: var(--text-main);
-    border-radius: 50%;  /* Círculos perfectos */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra para que flote */
-    transition: all 0.3s ease;
-    border: 1px solid var(--border);
-    text-decoration: none;
+    width: 45px; height: 45px; background-color: var(--bg-card); color: var(--text-main);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: all 0.3s ease;
+    border: 1px solid var(--border); text-decoration: none;
 }
-
-.social-sidebar a:hover {
-    background-color: var(--gold); 
-    color: #fff;
-    transform: translateX(5px); 
-    border-color: var(--gold);
-}
-
-/* 2. DISEÑO MÓVIL (Botones Flotantes Horizontales Abajo-Izquierda) */
-@media (max-width: 768px) {
-    .social-sidebar {
-        flex-direction: row; /* Fila horizontal */
-        
-        /* Posición: Flotando abajo a la izquierda */
-        top: auto; 
-        bottom: 20px; /* Separado del borde inferior */
-        left: 20px;   /* Separado del borde izquierdo */
-        width: auto;  /* Solo ocupa lo que necesita */
-        transform: none; /* Quitamos el centrado vertical de PC */
-        
-        /* Quitamos estilos de "barra" y dejamos solo el contenedor invisible */
-        background-color: transparent; 
-        border: none;
-        box-shadow: none;
-        padding: 0;
-        gap: 15px; /* Espacio entre burbujas */
-        z-index: 1900;
-    }
-
-    /* MANTENEMOS EL DISEÑO DE BURBUJA EN MÓVIL */
-    .social-sidebar a {
-        background-color: var(--bg-card); /* Fondo visible */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra visible */
-        border: 1px solid var(--border);
-        width: 45px; 
-        height: 45px;
-        font-size: 1.3rem;
-        color: var(--text-main);
-        border-radius: 50%; /* Redondos */
-    }
-
-    /* Efecto al tocar en móvil */
-    .social-sidebar a:active {
-        transform: scale(0.95);
-        background-color: var(--gold);
-        color: #fff;
-    }
-
-    /* 3. AJUSTES DE POSICIÓN PARA OTROS BOTONES (Para que no choquen) */
-    
-    /* El botón de WhatsApp a la derecha */
-    .whatsapp-float {
-        bottom: 20px; 
-        right: 20px;
-    }
-    
-    /* El botón de subir encima del WhatsApp */
-    .scroll-top {
-        bottom: 90px; 
-        right: 25px;
-    }
-    
-    /* Ya no necesitamos padding extra al body porque no hay barra fija */
-    body {
-        padding-bottom: 0; 
-    }
-}
-
-/* =========================================
-   CENTRADO DE SECCIÓN CONTACTO
-   ========================================= */
+.social-sidebar a:hover { background-color: var(--gold); color: #fff; transform: translateX(5px); border-color: var(--gold); }
 
 .contact-wrapper-centered {
-    /* 1. Centrar el contenedor en la página */
-    max-width: 800px;
-    margin: 0 auto; 
-    
-    /* 2. Centrar los elementos internos (Icono, Texto, Botón) */
-    display: flex;
-    flex-direction: column; /* Uno debajo del otro */
-    align-items: center;    /* Centrado horizontal perfecto */
-    justify-content: center;
-    text-align: center;     /* Para el texto de párrafos */
+    max-width: 800px; margin: 0 auto; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
 }
 
-/* Aseguramos que el icono no tenga márgenes raros */
-.contact-wrapper-centered i {
-    display: inline-block;
+/* =========================================
+   14. UTILITIES
+   ========================================= */
+.mt-3 { margin-top: 1rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+/* =========================================
+   15. RESPONSIVE GLOBAL (MÓVIL - FINAL)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Navbar & Menu */
+    .nav-items-right { gap: 15px; }
+    
+    .nav-links {
+        position: fixed; top: 0; right: -100%; height: 100vh; width: 75%;
+        background: var(--bg-card); flex-direction: column; align-items: center; justify-content: center;
+        transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.2); padding: 20px; z-index: 3000;
+    }
+    .nav-links.active { right: 0; }
+    .nav-links a { font-size: 1.2rem; margin: 15px 0; color: var(--text-main); }
+    
+    .hamburger { display: block; z-index: 3001; }
+    .hamburger.toggle .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+    .hamburger.toggle .bar:nth-child(2) { opacity: 0; }
+    .hamburger.toggle .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+    .btn-nav { display: none; } 
+
+    /* Typography & Layout */
+    .hero-content h1 { font-size: 3rem; }
+    .hero-tagline { font-size: 1.5rem; }
+    .split-container { flex-direction: column; gap: 30px; }
+    
+    /* Footer */
+    .footer-content { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+    .social-icons { justify-content: center; }
+
+    /* Catalog Items */
+    .catalog-item, .catalog-item.reverse { flex-direction: column; gap: 30px; }
+    .catalog-img { width: 100%; max-height: none; }
+    .catalog-info h2 { font-size: 2rem; }
+    
+    .premium-showcase { flex-direction: column; }
+    .showcase-image { min-height: 250px; }
+    .showcase-content { padding: 30px; }
+
+    /* Social Sidebar (Móvil: Horizontal Abajo) */
+    .social-sidebar {
+        flex-direction: row; top: auto; bottom: 20px; left: 20px; width: auto;
+        transform: none; gap: 15px; z-index: 1400; /* Debajo del menú móvil */
+    }
+    .social-sidebar a:active { transform: scale(0.95); background-color: var(--gold); color: #fff; }
+
+    /* Floating Buttons Adjustments */
+    .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 24px; z-index: 1400; }
+    .scroll-top { bottom: 90px; right: 25px; width: 40px; height: 40px; font-size: 18px; z-index: 1400; }
 }

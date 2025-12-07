@@ -1074,10 +1074,10 @@ body.health-theme {
     }
 }
 /* =========================================
-   REDES SOCIALES FLOTANTES (SIDEBAR & BOTTOM BAR)
+   REDES SOCIALES FLOTANTES (DEFINITIVO)
    ========================================= */
 
-/* 1. DISEÑO BASE (PC - Barra Lateral Izquierda) */
+/* 1. DISEÑO BASE (PC - Barra Lateral Izquierda Vertical) */
 .social-sidebar {
     position: fixed;
     left: 20px;          /* Pegado a la izquierda */
@@ -1090,73 +1090,106 @@ body.health-theme {
 }
 
 .social-sidebar a {
-    width: 40px;
-    height: 40px;
-    background-color: var(--bg-card); /* Fondo del color de la tarjeta (blanco/negro) */
+    width: 45px;         /* Tamaño del botón */
+    height: 45px;
+    background-color: var(--bg-card); /* Fondo del color de la tarjeta */
     color: var(--text-main);
-    border-radius: 50%; /* Círculos perfectos */
+    border-radius: 50%;  /* Círculos perfectos */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Sombra suave */
+    font-size: 1.3rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra para que flote */
     transition: all 0.3s ease;
     border: 1px solid var(--border);
     text-decoration: none;
 }
 
 .social-sidebar a:hover {
-    background-color: var(--gold); /* Dorado al pasar el mouse */
+    background-color: var(--gold); 
     color: #fff;
-    transform: translateX(5px); /* Pequeño movimiento */
+    transform: translateX(5px); 
     border-color: var(--gold);
 }
 
-/* 2. DISEÑO MÓVIL (Barra Inferior Fija) */
+/* 2. DISEÑO MÓVIL (Botones Flotantes Horizontales Abajo-Izquierda) */
 @media (max-width: 768px) {
     .social-sidebar {
-        flex-direction: row; /* Iconos en fila horizontal */
-        top: auto;           /* Quitamos el top */
-        bottom: 0;           /* Pegado al fondo */
-        left: 0;
-        width: 100%;         /* Ancho completo */
-        transform: none;     /* Quitamos el centrado vertical */
+        flex-direction: row; /* Fila horizontal */
         
-        background-color: var(--bg-card); /* Fondo sólido para tapar el contenido al hacer scroll */
-        padding: 10px 0;
-        justify-content: center; /* Centrados en la pantalla */
-        gap: 30px;           /* Más separados para tocar fácil con el dedo */
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1); /* Sombra hacia arriba */
-        border-top: 1px solid var(--border);
-    }
-
-    .social-sidebar a {
-        background-color: transparent; /* Sin fondo de círculo en móvil (más limpio) */
-        box-shadow: none;
+        /* Posición: Flotando abajo a la izquierda */
+        top: auto; 
+        bottom: 20px; /* Separado del borde inferior */
+        left: 20px;   /* Separado del borde izquierdo */
+        width: auto;  /* Solo ocupa lo que necesita */
+        transform: none; /* Quitamos el centrado vertical de PC */
+        
+        /* Quitamos estilos de "barra" y dejamos solo el contenedor invisible */
+        background-color: transparent; 
         border: none;
-        font-size: 1.5rem; /* Iconos más grandes */
-        color: var(--text-muted); /* Color gris suave */
+        box-shadow: none;
+        padding: 0;
+        gap: 15px; /* Espacio entre burbujas */
+        z-index: 1900;
     }
 
-    .social-sidebar a:hover {
-        background-color: transparent;
-        color: var(--gold);
-        transform: translateY(-3px); /* Movimiento hacia arriba */
+    /* MANTENEMOS EL DISEÑO DE BURBUJA EN MÓVIL */
+    .social-sidebar a {
+        background-color: var(--bg-card); /* Fondo visible */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra visible */
+        border: 1px solid var(--border);
+        width: 45px; 
+        height: 45px;
+        font-size: 1.3rem;
+        color: var(--text-main);
+        border-radius: 50%; /* Redondos */
     }
 
-    /* 3. AJUSTES PARA QUE NO SE TAPE NADA */
-    /* Subimos el botón de WhatsApp para que no quede detrás de la barra */
+    /* Efecto al tocar en móvil */
+    .social-sidebar a:active {
+        transform: scale(0.95);
+        background-color: var(--gold);
+        color: #fff;
+    }
+
+    /* 3. AJUSTES DE POSICIÓN PARA OTROS BOTONES (Para que no choquen) */
+    
+    /* El botón de WhatsApp a la derecha */
     .whatsapp-float {
-        bottom: 70px; 
+        bottom: 20px; 
+        right: 20px;
     }
     
-    /* Subimos el botón de Scroll Top */
+    /* El botón de subir encima del WhatsApp */
     .scroll-top {
-        bottom: 140px;
+        bottom: 90px; 
+        right: 25px;
     }
     
-    /* Añadimos espacio al final del body para que el último contenido se pueda leer */
+    /* Ya no necesitamos padding extra al body porque no hay barra fija */
     body {
-        padding-bottom: 60px;
+        padding-bottom: 0; 
     }
+}
+
+/* =========================================
+   CENTRADO DE SECCIÓN CONTACTO
+   ========================================= */
+
+.contact-wrapper-centered {
+    /* 1. Centrar el contenedor en la página */
+    max-width: 800px;
+    margin: 0 auto; 
+    
+    /* 2. Centrar los elementos internos (Icono, Texto, Botón) */
+    display: flex;
+    flex-direction: column; /* Uno debajo del otro */
+    align-items: center;    /* Centrado horizontal perfecto */
+    justify-content: center;
+    text-align: center;     /* Para el texto de párrafos */
+}
+
+/* Aseguramos que el icono no tenga márgenes raros */
+.contact-wrapper-centered i {
+    display: inline-block;
 }

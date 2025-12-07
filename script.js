@@ -95,3 +95,41 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth' // Subida suave
         });
     });
+
+/* --- CONTROL MANUAL DE VIDEO (BOTÓN) --- */
+    const manualContainers = document.querySelectorAll('.video-manual-container');
+
+    manualContainers.forEach(container => {
+        const btn = container.querySelector('.toggle-media-btn');
+        const img = container.querySelector('.image-layer');
+        const video = container.querySelector('.video-layer');
+
+        if (btn && video && img) {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Evita saltos raros
+
+                // Si el video está pausado (estamos viendo la foto) -> DAR PLAY
+                if (video.paused) {
+                    img.classList.remove('active'); // Ocultar foto
+                    video.classList.add('active');  // Mostrar video
+                    video.play();
+                    
+                    // Cambiar texto del botón
+                    btn.innerHTML = '<i class="fas fa-camera"></i> Ver Foto';
+                    btn.style.background = "rgba(0,0,0,0.7)"; // Oscurecer botón para contraste
+                    btn.style.color = "#fff";
+                } 
+                // Si el video está sonando -> PAUSAR y MOSTRAR FOTO
+                else {
+                    video.pause();
+                    video.classList.remove('active'); // Ocultar video
+                    img.classList.add('active');      // Mostrar foto
+                    
+                    // Restaurar botón
+                    btn.innerHTML = '<i class="fas fa-play"></i> Ver Video';
+                    btn.style.background = "rgba(255, 255, 255, 0.9)";
+                    btn.style.color = ""; // Volver al color original CSS
+                }
+            });
+        }
+    });

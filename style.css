@@ -304,6 +304,13 @@ body.health-theme {
     --gold-hover: #21867a;
     --bg-nav: rgba(255, 255, 255, 0.95);
 }
+
+/* --- (Evita letras blancas sobre fondo blanco) --- */
+body.health-theme.dark-mode {
+    --bg-nav: rgba(10, 10, 10, 0.95); /* Cambia el fondo del menú a negro */
+    --bg-body: #0a1514;               /* Un fondo oscuro con tinte verdoso muy sutil */
+    --text-main: #ffffff;             /* Asegura que el texto sea blanco puro */
+}
 .health-dot { color: var(--health); font-weight: 300; }
 .text-health { color: var(--health); font-style: italic; font-family: var(--font-serif); }
 
@@ -413,39 +420,6 @@ body.health-theme {
    ========================================= */
 .mt-3 { margin-top: 1rem; }
 .mb-5 { margin-bottom: 3rem; }
-
-/* =========================================
-   15. RESPONSIVE GLOBAL (MÓVIL - FINAL)
-   ========================================= */
-@media (max-width: 768px) {
-    /* --- Navbar & Menu --- */
-    .nav-items-right { gap: 15px; }
-    
-    .nav-links {
-        position: fixed; top: 0; right: -100%; height: 100vh; width: 75%;
-        background: var(--bg-card); flex-direction: column; align-items: center; justify-content: center;
-        transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.2); padding: 20px; z-index: 3000;
-    }
-    .nav-links.active { right: 0; }
-    .nav-links a { font-size: 1.2rem; margin: 15px 0; color: var(--text-main); }
-    
-    .hamburger { display: block; z-index: 3001; }
-    .hamburger.toggle .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
-    .hamburger.toggle .bar:nth-child(2) { opacity: 0; }
-    .hamburger.toggle .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
-    .btn-nav { display: none; } 
-
-    /* --- Layout & Typography --- */
-    .hero-content h1 { font-size: 3rem; }
-    .hero-tagline { font-size: 1.5rem; }
-    .split-container { flex-direction: column; gap: 30px; }
-    .footer-content { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-    .social-icons { justify-content: center; }
-    .catalog-item, .catalog-item.reverse { flex-direction: column; gap: 30px; }
-    .catalog-img { width: 100%; max-height: none; }
-    .premium-showcase { flex-direction: column; }
-    .showcase-image { min-height: 250px; }
-    .showcase-content { padding: 30px; }
 
     /* =========================================
    15. RESPONSIVE GLOBAL (MÓVIL - FINAL OPTIMIZADO)

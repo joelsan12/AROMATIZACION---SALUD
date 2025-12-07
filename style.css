@@ -418,7 +418,40 @@ body.health-theme {
    15. RESPONSIVE GLOBAL (MÓVIL - FINAL)
    ========================================= */
 @media (max-width: 768px) {
-    /* Navbar & Menu */
+    /* --- Navbar & Menu --- */
+    .nav-items-right { gap: 15px; }
+    
+    .nav-links {
+        position: fixed; top: 0; right: -100%; height: 100vh; width: 75%;
+        background: var(--bg-card); flex-direction: column; align-items: center; justify-content: center;
+        transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.2); padding: 20px; z-index: 3000;
+    }
+    .nav-links.active { right: 0; }
+    .nav-links a { font-size: 1.2rem; margin: 15px 0; color: var(--text-main); }
+    
+    .hamburger { display: block; z-index: 3001; }
+    .hamburger.toggle .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+    .hamburger.toggle .bar:nth-child(2) { opacity: 0; }
+    .hamburger.toggle .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+    .btn-nav { display: none; } 
+
+    /* --- Layout & Typography --- */
+    .hero-content h1 { font-size: 3rem; }
+    .hero-tagline { font-size: 1.5rem; }
+    .split-container { flex-direction: column; gap: 30px; }
+    .footer-content { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+    .social-icons { justify-content: center; }
+    .catalog-item, .catalog-item.reverse { flex-direction: column; gap: 30px; }
+    .catalog-img { width: 100%; max-height: none; }
+    .premium-showcase { flex-direction: column; }
+    .showcase-image { min-height: 250px; }
+    .showcase-content { padding: 30px; }
+
+    /* =========================================
+   15. RESPONSIVE GLOBAL (MÓVIL - FINAL OPTIMIZADO)
+   ========================================= */
+@media (max-width: 768px) {
+    /* --- Ajustes Básicos de Estructura --- */
     .nav-items-right { gap: 15px; }
     
     .nav-links {
@@ -436,31 +469,83 @@ body.health-theme {
     .btn-nav { display: none; } 
 
     /* Typography & Layout */
-    .hero-content h1 { font-size: 3rem; }
-    .hero-tagline { font-size: 1.5rem; }
+    .hero-content h1 { font-size: 2.5rem; } /* Ajustado para que no ocupe toda la pantalla */
+    .hero-tagline { font-size: 1.3rem; }
     .split-container { flex-direction: column; gap: 30px; }
-    
-    /* Footer */
     .footer-content { grid-template-columns: 1fr; text-align: center; gap: 30px; }
     .social-icons { justify-content: center; }
-
-    /* Catalog Items */
     .catalog-item, .catalog-item.reverse { flex-direction: column; gap: 30px; }
     .catalog-img { width: 100%; max-height: none; }
-    .catalog-info h2 { font-size: 2rem; }
-    
     .premium-showcase { flex-direction: column; }
     .showcase-image { min-height: 250px; }
     .showcase-content { padding: 30px; }
 
-    /* Social Sidebar (Móvil: Horizontal Abajo) */
+    /* =========================================================
+       BOTONES FLOTANTES NO INTRUSIVOS (DISTRIBUCIÓN)
+    ========================================================= */
+    
+    /* 1. REDES SOCIALES (Abajo Izquierda - Discretas) */
     .social-sidebar {
-        flex-direction: row; top: auto; bottom: 20px; left: 20px; width: auto;
-        transform: none; gap: 15px; z-index: 1400; /* Debajo del menú móvil */
+        flex-direction: row;
+        top: auto;
+        bottom: 15px;      /* Pegado abajo */
+        left: 15px;        /* Pegado a la izquierda */
+        right: auto;
+        width: auto;
+        transform: none;
+        gap: 8px;          /* Iconos más juntos */
+        z-index: 1400;
+        
+        /* Fondo difuminado para que se lean pero no tapen mucho */
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+        padding: 5px 10px;
+        border-radius: 30px;
+        border: 1px solid rgba(0,0,0,0.05);
     }
-    .social-sidebar a:active { transform: scale(0.95); background-color: var(--gold); color: #fff; }
 
-    /* Floating Buttons Adjustments */
-    .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 24px; z-index: 1400; }
-    .scroll-top { bottom: 90px; right: 25px; width: 40px; height: 40px; font-size: 18px; z-index: 1400; }
+    /* Iconos pequeños y limpios */
+    .social-sidebar a {
+        width: 35px;       /* Más pequeños */
+        height: 35px;
+        font-size: 1rem;
+        background-color: transparent;
+        color: var(--text-main);
+        box-shadow: none;
+        border: 1px solid transparent;
+    }
+    
+    .social-sidebar a:active {
+        color: var(--gold);
+        transform: scale(1.1);
+    }
+
+    /* 2. WHATSAPP (Abajo Derecha - Principal) */
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;       /* Tamaño cómodo para el dedo */
+        height: 50px;
+        font-size: 26px;
+        z-index: 1400;
+        /* Sombra suave para destacar */
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    }
+
+    /* 3. SCROLL TOP (Arriba del WhatsApp - Secundario) */
+    .scroll-top {
+        bottom: 85px;      /* Justo encima del WhatsApp */
+        right: 25px;       /* Alineado con WhatsApp */
+        width: 40px;       /* Más pequeño */
+        height: 40px;
+        font-size: 16px;
+        z-index: 1399;     /* Debajo del nivel de WA */
+        opacity: 0;        /* Invisible si no bajas */
+        visibility: hidden;
+    }
+    /* Solo aparece cuando bajas */
+    .scroll-top.show {
+        opacity: 0.8;      /* Semitransparente para no molestar */
+        visibility: visible;
+    }
 }

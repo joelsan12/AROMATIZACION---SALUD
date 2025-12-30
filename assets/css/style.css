@@ -1534,3 +1534,203 @@ body.health-theme.dark-mode {
         visibility: visible;
     }
 }
+
+/* =========================================
+   16. NUEVA SECCIÓN: MARKETING OLFATIVO
+   ========================================= */
+
+/* =========================================
+   16. SECCIÓN MARKETING (DISEÑO MAGAZINE)
+   ========================================= */
+
+#marketing-split {
+    background: #faf9f6;
+    /* Fondo Crema Muy Suave */
+}
+
+.elegant-italic-dark {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.elegant-italic-dark::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+}
+
+.marketing-text {
+    color: #555;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    text-align: justify;
+    font-weight: 300;
+}
+
+.btn-whatsapp-dark {
+    background: #111;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 15px 40px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    box-shadow: none;
+    margin-top: 10px;
+}
+
+.btn-whatsapp-dark:hover {
+    background: var(--gold);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+}
+
+/* Imagen con Marco de Oro (Wireframe) */
+.img-wrapper-gold {
+    position: relative;
+    z-index: 1;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.img-wrapper-gold::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    /* Desplazado arriba */
+    right: -20px;
+    /* Desplazado derecha */
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--gold);
+    /* Marco hueco elegante */
+    background: transparent;
+    z-index: -1;
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.img-wrapper-gold:hover::before {
+    transform: translate(10px, -10px);
+}
+
+.img-wrapper-gold img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    /* Sombra suave y difusa */
+    /* Filtro para unificar tono (opcional) */
+}
+
+/* Título con línea vertical */
+#marketing-split .section-title {
+    border-left: 4px solid var(--gold);
+    padding-left: 25px;
+    line-height: 1.2;
+}
+
+/* Ajustes Móvil */
+@media screen and (max-width: 768px) {
+    #marketing-split .section-title {
+        border-left: none;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .elegant-italic-dark::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .img-wrapper-gold {
+        margin: 0;
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+
+    .img-wrapper-gold::before {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        bottom: 10px;
+        width: auto;
+        height: auto;
+    }
+}
+
+/* =========================================
+   17. SECCIÓN PILARES ÉTICOS (3 COLUMNAS)
+   ========================================= */
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.pillar-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Borde sutil */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+    /* Sombra dorada suave */
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.pillar-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: var(--gold);
+    font-size: 2rem;
+    transition: all 0.3s ease;
+}
+
+.pillar-card:hover .pillar-icon {
+    background: var(--gold);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.pillar-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-family: var(--font-serif);
+}
+
+.pillar-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}

@@ -1351,6 +1351,12 @@ body.health-theme.dark-mode {
 /* =========================================
    15. RESPONSIVE GLOBAL (MÓVIL - FINAL OPTIMIZADO)
    ========================================= */
+
+/* Regla GLOBAL para ocultar en escritorio */
+.mobile-only-link {
+    display: none;
+}
+
 @media (max-width: 768px) {
 
     /* --- Ajustes Básicos de Estructura --- */

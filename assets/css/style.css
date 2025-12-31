@@ -1354,6 +1354,34 @@ body.health-theme.dark-mode {
 @media (max-width: 768px) {
 
     /* --- Ajustes Básicos de Estructura --- */
+    /* Mostrar enlace especial SOLO en móvil */
+    .mobile-only-link {
+        display: block;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        /* Separador sutil */
+        text-align: center;
+    }
+
+    .mobile-only-link a {
+        background: linear-gradient(135deg, #fdb913 0%, #d4af37 100%);
+        color: #fff !important;
+        padding: 12px 20px;
+        border-radius: 50px;
+        /* Bordes redondeados elegantes */
+        display: inline-block;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        transition: transform 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .mobile-only-link a:active {
+        transform: scale(0.98);
+    }
+
     .nav-items-right {
         gap: 15px;
     }

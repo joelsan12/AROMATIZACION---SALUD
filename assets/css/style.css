@@ -1792,3 +1792,122 @@ body.health-theme.dark-mode {
     color: var(--text-muted);
     line-height: 1.7;
 }
+/* =========================================
+   9. SECCIÓN BENEFICIOS (NUEVO)
+   ========================================= */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.benefit-card {
+    background: var(--bg-card);
+    padding: 35px 25px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: var(--transition);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: var(--shadow);
+}
+
+.benefit-card .icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 210, 63, 0.1);
+    color: var(--gold);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    transition: 0.3s;
+}
+
+.benefit-card:hover .icon-box {
+    background: var(--gold);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.benefit-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   10. FAQ ACCORDION (NUEVO)
+   ========================================= */
+.max-w-800 {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-accordion {
+    margin-top: 40px;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 0;
+    text-align: left;
+    font-size: 1.1rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    color: var(--gold);
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.faq-question.active {
+    color: var(--gold);
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+.faq-answer p {
+    padding-bottom: 25px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+

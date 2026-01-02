@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // 1. MODO OSCURO
     const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = themeBtn ? themeBtn.querySelector('i') : null;
     const body = document.body;
-    
+
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         body.classList.add('dark-mode');
-        if(themeIcon) { themeIcon.classList.replace('fa-moon', 'fa-sun'); }
+        if (themeIcon) { themeIcon.classList.replace('fa-moon', 'fa-sun'); }
     }
 
     if (themeBtn) {
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
-            if(hamburger) hamburger.classList.remove('toggle');
+            if (hamburger) hamburger.classList.remove('toggle');
         });
     });
 
@@ -78,58 +78,75 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- 5. BOTÓN SCROLL TOP ---
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
+const scrollTopBtn = document.getElementById('scrollTopBtn');
 
-    window.addEventListener('scroll', () => {
-        // Mostrar botón si bajamos más de 300px
-        if (window.scrollY > 300) {
-            scrollTopBtn.classList.add('show');
-        } else {
-            scrollTopBtn.classList.remove('show');
-        }
-    });
+window.addEventListener('scroll', () => {
+    // Mostrar botón si bajamos más de 300px
+    if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+    } else {
+        scrollTopBtn.classList.remove('show');
+    }
+});
 
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth' // Subida suave
-        });
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Subida suave
     });
+});
 
 /* --- CONTROL MANUAL DE VIDEO (BOTÓN) --- */
-    const manualContainers = document.querySelectorAll('.video-manual-container');
+const manualContainers = document.querySelectorAll('.video-manual-container');
 
-    manualContainers.forEach(container => {
-        const btn = container.querySelector('.toggle-media-btn');
-        const img = container.querySelector('.image-layer');
-        const video = container.querySelector('.video-layer');
+manualContainers.forEach(container => {
+    const btn = container.querySelector('.toggle-media-btn');
+    const img = container.querySelector('.image-layer');
+    const video = container.querySelector('.video-layer');
 
-        if (btn && video && img) {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault(); // Evita saltos raros
+    if (btn && video && img) {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita saltos raros
 
-                // Si el video está pausado (estamos viendo la foto) -> DAR PLAY
-                if (video.paused) {
-                    img.classList.remove('active'); // Ocultar foto
-                    video.classList.add('active');  // Mostrar video
-                    video.play();
-                    
-                    // Cambiar texto del botón
-                    btn.innerHTML = '<i class="fas fa-camera"></i> Ver Foto';
-                    btn.style.background = "rgba(0,0,0,0.7)"; // Oscurecer botón para contraste
-                    btn.style.color = "#fff";
-                } 
-                // Si el video está sonando -> PAUSAR y MOSTRAR FOTO
-                else {
-                    video.pause();
-                    video.classList.remove('active'); // Ocultar video
-                    img.classList.add('active');      // Mostrar foto
-                    
-                    // Restaurar botón
-                    btn.innerHTML = '<i class="fas fa-play"></i> Ver Video';
-                    btn.style.background = "rgba(255, 255, 255, 0.9)";
-                    btn.style.color = ""; // Volver al color original CSS
-                }
-            });
+            // Si el video está pausado (estamos viendo la foto) -> DAR PLAY
+            if (video.paused) {
+                img.classList.remove('active'); // Ocultar foto
+                video.classList.add('active');  // Mostrar video
+                video.play();
+
+                // Cambiar texto del botón
+                btn.innerHTML = '<i class="fas fa-camera"></i> Ver Foto';
+                btn.style.background = "rgba(0,0,0,0.7)"; // Oscurecer botón para contraste
+                btn.style.color = "#fff";
+            }
+            // Si el video está sonando -> PAUSAR y MOSTRAR FOTO
+            else {
+                video.pause();
+                video.classList.remove('active'); // Ocultar video
+                img.classList.add('active');      // Mostrar foto
+
+                // Restaurar botón
+                btn.innerHTML = '<i class="fas fa-play"></i> Ver Video';
+                btn.style.background = "rgba(255, 255, 255, 0.9)";
+                btn.style.color = ""; // Volver al color original CSS
+            }
+        });
+    }
+});
+
+
+/* --- 6. FAQ ACCORDION --- */
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        question.classList.toggle('active');
+
+        if (question.classList.contains('active')) {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+        } else {
+            answer.style.maxHeight = 0;
         }
     });
+});
